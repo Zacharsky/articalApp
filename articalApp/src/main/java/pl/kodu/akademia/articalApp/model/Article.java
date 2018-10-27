@@ -21,6 +21,10 @@ public class Article {
     private String category;
 
 
+    public int getArticleId(){
+        return articles;
+    }
+
     public int getArticles() {
         return articles;
     }

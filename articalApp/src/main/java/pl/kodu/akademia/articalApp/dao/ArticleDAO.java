@@ -24,9 +24,8 @@ public class ArticleDAO implements IArticleDAO {
 
     @Override
     public Article getArticleById(int articleId) {
-        entityManager.find(Article.class, articleId);
+        return entityManager.find(Article.class, articleId);
     }
-
 
     @Override
     public void addArticle(Article article) {
@@ -38,7 +37,6 @@ public class ArticleDAO implements IArticleDAO {
         Article artc1 = getArticleById(article.getArticleId());
         artc1.setTitle(article.getTitle());
         artc1.setCategory(article.getCategory());
-
     }
 
     @Override
@@ -51,6 +49,9 @@ public class ArticleDAO implements IArticleDAO {
         String hql = "From Article as act1 WHERE act1.title = ? and act1.category = ?";
         int count = entityManager.createQuery(hql).setParameter(1,title)
                 .setParameter(2,category).getResultList().size();
-        return false;
+
+        //
+        return count > 0 ? true : false;
+
     }
 }
